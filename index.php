@@ -80,8 +80,8 @@ function copyFileAndChgMd5($old_file_path = '', $new_file_path = null)
 ini_set('memory_limit', -1);
 $time          = microtime(true);
 $dir_path      = dirname(__FILE__) . DIRECTORY_SEPARATOR;
-$old_file_path = $dir_path . 'old_file' . DIRECTORY_SEPARATOR;;
-$new_file_path = $dir_path . 'new_file' . DIRECTORY_SEPARATOR;;
+$old_file_path = $dir_path . 'old_file' . DIRECTORY_SEPARATOR;
+$new_file_path = $dir_path . 'new_file' . DIRECTORY_SEPARATOR;
 
 copyFileAndChgMd5($old_file_path, $new_file_path);
 
