@@ -18,19 +18,22 @@ function chgFileMd5($file = '', $new_file = null)
         echo '==============路径：' . $file . ' 获取文件MD5信息失败' . PHP_EOL;
         return false;
     }
-    $content = file_get_contents($file);
+    /*$content = file_get_contents($file);
     if ($content === false) {
         echo '==============路径：' . $file . ' 获取文件MD5信息失败' . PHP_EOL;
         return false;
-    }
+    }*/
     if (is_null($new_file)) {
         $new_file = $file;
     }
-    $new_content = file_put_contents($new_file, $content . ' ');
+    $handle = fopen($new_file, 'a');
+    fwrite($handle, ' ');
+    fclose($handle);
+    /*$new_content = file_put_contents($new_file, $content . ' ');
     if ($new_content === false) {
         echo '==============路径：' . $file . ' 更改文件MD5信息失败' . PHP_EOL;
         return false;
-    }
+    }*/
     echo '文件：' . $file . ' 更改md5成功，原md5：' . $md5 . '，新md5：' . md5_file($new_file) . PHP_EOL;
     return $file;
 }
@@ -86,4 +89,6 @@ $new_file_path = $dir_path . 'new_file' . DIRECTORY_SEPARATOR;
 copyFileAndChgMd5($old_file_path, $new_file_path);
 
 printf('脚本运行时间为%.2f', microtime(true) - $time);
+echo PHP_EOL;
+echo round(memory_get_usage(true) / 1024, 2) . " KB";
 echo PHP_EOL;
